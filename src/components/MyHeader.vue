@@ -21,7 +21,8 @@ header {
     img {
         height: 50%;
         width: auto;
-        padding-left: 30px; 
+        padding-left: 30px;
+        
     }
 }
 
