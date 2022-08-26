@@ -1,5 +1,6 @@
 <template>
     <main>
+        <LoadInProgress v-if="loadInProgress"/>
         <div class="container d-flex justify-content-center align-items-center">
             <div class="row row-cols-5 g-5 d-flex">
                 <SingleAlbum v-for="(album, index) in albumList" :key="index" :album="album"/>
@@ -12,16 +13,19 @@
 <script>
 import axios from 'axios';
 import SingleAlbum from './SingleAlbum.vue';
+import LoadInProgress from './LoadInProgress.vue';
 
 export default {
     name: 'AlbumList',
     components: {
-        SingleAlbum
+        SingleAlbum,
+        LoadInProgress,
     },
     data() {
     return {
         albumList: [],
-        endpoint: 'https://flynn.boolean.careers/exercises/api/array/music'
+        endpoint: 'https://flynn.boolean.careers/exercises/api/array/music',
+        loadInProgress: true,
     };
     },
     methods: {      
@@ -31,11 +35,13 @@ export default {
             .get(this.endpoint)
             .then((response) => {
                 that.albumList = response.data.response;
+                that.loadInProgress = false;
                 console.log('that.albumList: ', that.albumList);
             
             })
             .catch((error) => {
                 console.log(error);
+                that.loadInProgress = false;
             });
         }
     },
