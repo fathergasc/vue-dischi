@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MyHeader :genresList="genresList" @selectedGenre="getGenreFilter"/>
-    <AlbumList @genresList="getGenresList" />
+    <AlbumList :genreFilter="genreFilter" @genresList="getGenresList" />
   </div>
 </template>
 

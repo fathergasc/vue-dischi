@@ -3,7 +3,7 @@
         <LoadInProgress v-if="loadInProgress"/>
         <div class="container d-flex justify-content-center align-items-center">
             <div class="row row-cols-5 g-5 d-flex">
-                <SingleAlbum v-for="(album, index) in albumList" :key="index" :album="album"/>
+                <SingleAlbum v-for="(album, index) in filteredAlbumList" :key="index" :album="album"/>
             </div>
         </div>
     </main>
@@ -58,9 +58,28 @@ export default {
             
         }
     },
+    props: {
+        genreFilter: {
+            type: String,
+        },
+    },
     created() {
         this.getAlbums();
-    }
+    },
+    computed: {
+        filteredAlbumList() {
+            if (this.genreFilter == '') {
+                return this.albumList;
+            } else {
+                const filteredAlbumList = this.albumList.filter((album) => {
+                    if (album.genre.toLowerCase().includes(this.genreFilter)) {
+                        return true;
+                    } else {
+                        return false;
+                    }});
+            return filteredAlbumList;
+        }
+    }}
 };
 
 </script>
