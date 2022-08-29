@@ -24,6 +24,7 @@ export default {
     data() {
     return {
         albumList: [],
+        genresList: [],
         endpoint: 'https://flynn.boolean.careers/exercises/api/array/music',
         loadInProgress: true,
     };
@@ -37,12 +38,24 @@ export default {
                 that.albumList = response.data.response;
                 that.loadInProgress = false;
                 console.log('that.albumList: ', that.albumList);
+                that.createGenresList();
             
             })
             .catch((error) => {
                 console.log(error);
                 that.loadInProgress = false;
             });
+        },
+        createGenresList() {
+            let that = this;
+            this.albumList.forEach((album) => {
+                if (!that.genresList.includes(album.genre)) {
+                    that.genresList.push(album.genre);
+                }
+            })
+            console.log('that.genresList: ', that.genresList);
+            console.log('this.albumList: ', this.albumList);
+            
         }
     },
     created() {
