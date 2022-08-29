@@ -88,6 +88,8 @@ export default {
 @import '@/styles/general.scss';
 
 .row {
+    width: 100%;
+    
     img {
         width: 130px;
         height: 130px;
@@ -102,7 +104,6 @@ export default {
             cursor: pointer;
             transform: scale(1.1);
         }
-
     }
 }
 
