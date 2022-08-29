@@ -1,9 +1,9 @@
 <template>
   <header class="px-3 d-flex justify-content-between align-items-center">
     <img id="spotify-logo" src="@/assets/images/logo.svg" alt="">
-    <select>
+    <select @change="genreFilter">
       <option value="">Scegli un genere</option>
-      <option v-for="(genre, index) in genresList" :key="index" :value="genre">{{genre}}</option>
+      <option v-for="(genre, index) in genresList" :key="index" :value="genre.toLowerCase()">{{genre}}</option>
     </select>
   </header>
 </template>
@@ -12,6 +12,11 @@
 
 export default {
  name: 'MyHeader',
+ methods: {
+    genreFilter(event) {
+      this.$emit('selectedGenre', event.target.value);
+    }
+ },
  props: {
   genresList: {
    type: Array,

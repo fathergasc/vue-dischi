@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MyHeader :genresList="genresList"/>
+    <MyHeader :genresList="genresList" @selectedGenre="getGenreFilter"/>
     <AlbumList @genresList="getGenresList" />
   </div>
 </template>
@@ -14,6 +14,7 @@ export default {
   data() {
     return {
       genresList: [],
+      genreFilter:'',
     }
   },
   components: {
@@ -24,6 +25,10 @@ export default {
     getGenresList(array) {
       this.genresList = array;
       console.log('genresList in app.vue', this.genresList);
+    },
+    getGenreFilter(value) {
+      this.genreFilter = value;
+      console.log('genreFilter in app.vue', this.genreFilter);
     }
   }
 }
