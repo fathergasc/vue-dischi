@@ -1,17 +1,21 @@
 <template>
   <header class="px-3 d-flex justify-content-between align-items-center">
     <img id="spotify-logo" src="@/assets/images/logo.svg" alt="">
-    <SelectGenre />
+    <select>
+      <option value="">Scegli un genere</option>
+      <option v-for="(genre, index) in genresList" :key="index" :value="genre">{{genre}}</option>
+    </select>
   </header>
 </template>
 
 <script>
-import SelectGenre from './SelectGenre.vue'
 
 export default {
  name: 'MyHeader',
- components: {
-  SelectGenre
+ props: {
+  genresList: {
+   type: Array,
+  }
  },
 }
 </script>

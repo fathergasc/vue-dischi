@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MyHeader />
+    <MyHeader :genresList="genresList"/>
     <AlbumList @genresList="getGenresList" />
   </div>
 </template>
