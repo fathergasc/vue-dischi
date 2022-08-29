@@ -39,6 +39,7 @@ export default {
                 that.loadInProgress = false;
                 console.log('that.albumList: ', that.albumList);
                 that.createGenresList();
+                that.$emit('genresList', that.genresList);
             
             })
             .catch((error) => {
@@ -54,7 +55,6 @@ export default {
                 }
             })
             console.log('that.genresList: ', that.genresList);
-            console.log('this.albumList: ', this.albumList);
             
         }
     },

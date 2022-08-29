@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MyHeader />
-    <AlbumList />
+    <AlbumList @genresList="getGenresList" />
   </div>
 </template>
 
@@ -11,9 +11,20 @@ import AlbumList from './components/AlbumList.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      genresList: [],
+    }
+  },
   components: {
     MyHeader,
     AlbumList
+  },
+  methods: {
+    getGenresList(array) {
+      this.genresList = array;
+      console.log('genresList in app.vue', this.genresList);
+    }
   }
 }
 </script>
